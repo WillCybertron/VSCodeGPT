@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
-import { getWebviewHtml } from "./getWebviewHtml"; // We'll write this next
+import { getWebviewHtml } from "./getWebviewHtml";
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
-      "vscodegpt.chat",
+      "vscodegpt.chat", // this should match your package.json view id
       new ChatWebviewProvider(context)
     )
   );
@@ -18,18 +18,19 @@ class ChatWebviewProvider implements vscode.WebviewViewProvider {
       enableScripts: true,
       localResourceRoots: [
         vscode.Uri.joinPath(this.context.extensionUri, "dist"),
+        vscode.Uri.joinPath(this.context.extensionUri, "media"), // Add this if you need to load your icon or other assets!
       ],
     };
 
-    // Use your generated HTML
+    // Set the HTML content for your webview
     webviewView.webview.html = getWebviewHtml(
       webviewView.webview,
       this.context.extensionUri
     );
 
-    // Listen to messages from webview (optional for now)
+    // Optional: Listen to messages from your React app in the webview
     webviewView.webview.onDidReceiveMessage((msg) => {
-      // handle messages from React app here
+      // handle messages from React app here if needed
     });
   }
 }
