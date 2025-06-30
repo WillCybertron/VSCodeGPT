@@ -1,44 +1,42 @@
 {
   "name": "vscodegpt",
   "displayName": "VSCodeGPT",
+  "publisher": "one-frequency",
   "description": "VS Code GPT Integration",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.101.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "categories": ["Other"],
   "activationEvents": [
-	"onView:vscodegpt.chat"
+    "onView:supergpt.chat"
   ],
   "main": "./dist/extension.js",
   "contributes": {
-  "commands": [
-    {
-      "command": "vscodegpt.helloWorld",
-      "title": "Hello World"
+    "commands": [
+      {
+        "command": "vscodegpt.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "supergpt",
+          "title": "Super GPT",
+          "icon": "media/one-frequency-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "supergpt": [
+        {
+          "id": "supergpt.chat",
+          "name": "Chat"
+        }
+      ]
     }
-  ],
-  "viewsContainers": {
-    "activitybar": [
-      {
-        "id": "vscodegpt",
-        "title": "GPT",
-        "icon": "media/one-frequency-icon.svg"
-      }
-    ]
   },
-  "views": {
-    "vscodegpt": [
-      {
-        "id": "vscodegpt.chat",
-        "name": "Chat"
-
-      }
-    ]
-  }
-}  ,
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
