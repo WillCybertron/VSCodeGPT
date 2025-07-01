@@ -43,10 +43,16 @@ export default function App() {
   }
 
   return (
-    <div style={{
-      display: "flex", flexDirection: "column", height: "100%", minHeight: "100vh",
-      background: "#1e1e1e", color: "#fff"
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        minHeight: "100vh",
+        background: "#1e1e1e",
+        color: "#fff",
+      }}
+    >
       <div style={{ flex: 1, overflowY: "auto", padding: 16 }}>
         {messages.map((msg, idx) => (
           <div
@@ -65,7 +71,7 @@ export default function App() {
                 borderRadius: 16,
                 maxWidth: "70%",
                 whiteSpace: "pre-wrap",
-                fontSize: 15
+                fontSize: 15,
               }}
             >
               {msg.text}
@@ -93,7 +99,7 @@ export default function App() {
             marginRight: 8,
             fontSize: 16,
             background: "#1e1e1e",
-            color: "#fff"
+            color: "#fff",
           }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -110,7 +116,7 @@ export default function App() {
             padding: "8px 20px",
             fontWeight: "bold",
             cursor: "pointer",
-            fontSize: 16
+            fontSize: 16,
           }}
         >
           Send

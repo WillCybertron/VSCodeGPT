@@ -1,0 +1,48 @@
+/* ChatInput.module.css */
+.inputBar {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid var(--vscode-panel-border, #333);
+  background: var(--vscode-editorWidget-background, #252526);
+}
+
+.input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  margin-right: 8px;
+  font-size: 16px;
+  background: var(--vscode-input-background, #1e1e1e);
+  color: var(--vscode-input-foreground, #fff);
+}
+
+.sendButton {
+  background: var(--vscode-button-background, #2d8fff);
+  color: var(--vscode-button-foreground, #fff);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 22px;
+  margin-left: 4px;
+  transition: background 0.07s;
+}
+
+.sendButton:disabled {
+  background: var(--vscode-button-secondaryBackground, #565869);
+  cursor: default;
+}
+
+.sendIcon {
+  font-family: codicon !important;
+  font-size: 22px;
+  line-height: 1;
+  /* For consistent alignment, especially in VS Code webview */
+}
