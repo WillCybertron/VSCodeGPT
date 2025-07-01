@@ -32,7 +32,8 @@
       "supergpt": [
         {
           "id": "supergpt.chat",
-          "name": "Chat"
+          "name": "Chat",
+          "type": "webview"
         }
       ]
     }

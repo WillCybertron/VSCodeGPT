@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { getChatWebviewContent } from "./webview/getChatWebviewContent";
+import { getChatWebviewContent } from "./getChatWebviewContent";
 
 // ---------------------
 // Provider needs to be defined BEFORE activate()
@@ -49,22 +49,30 @@ class ChatWebviewProvider implements vscode.WebviewViewProvider {
 // ACTIVATE function
 // ---------------------
 export function activate(context: vscode.ExtensionContext) {
+  console.log("Extension activating...");
+
   const output = vscode.window.createOutputChannel("VSCodeGPT");
   output.appendLine("GPT EXTENSION ACTIVATED!");
   output.show(true);
 
-  try {
-    context.subscriptions.push(
-      vscode.window.registerWebviewViewProvider(
-        ChatWebviewProvider.viewType,
-        new ChatWebviewProvider(context, output)
-      )
-    );
-    output.appendLine("Provider registration succeeded.");
-  } catch (err) {
-    output.appendLine("Provider registration failed: " + err);
-    vscode.window.showErrorMessage(
-      "Provider registration failed: " + (err as Error).message
-    );
-  }
+  // Register IMMEDIATELY
+  const provider = new ChatWebviewProvider(context, output);
+  output.appendLine("Provider instance created");
+
+  const disposable = vscode.window.registerWebviewViewProvider(
+    ChatWebviewProvider.viewType,
+    provider
+  );
+
+  context.subscriptions.push(disposable);
+  output.appendLine("Provider registered and pushed to subscriptions");
+
+  console.log("Extension activation complete");
+
+  const testCommand = vscode.commands.registerCommand('vscodegpt.helloWorld', () => {
+    output.appendLine("Hello World command executed");
+    vscode.window.showInformationMessage('VSCodeGPT is working!');
+  });
+
+  context.subscriptions.push(testCommand);
 }

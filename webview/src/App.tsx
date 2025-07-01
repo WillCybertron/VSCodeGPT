@@ -44,7 +44,7 @@ export default function App() {
 
   return (
     <div style={{
-      display: "flex", flexDirection: "column", height: "100vh",
+      display: "flex", flexDirection: "column", height: "100%", minHeight: "100vh",
       background: "#1e1e1e", color: "#fff"
     }}>
       <div style={{ flex: 1, overflowY: "auto", padding: 16 }}>
